@@ -1,0 +1,4 @@
+rootProject.name = 'block-nonblock-test'
+include 'mvc-block-nonblock'
+include 'reactive-nonblock'
+

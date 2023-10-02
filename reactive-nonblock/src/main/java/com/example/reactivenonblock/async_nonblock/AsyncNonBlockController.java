@@ -17,6 +17,7 @@ public class AsyncNonBlockController {
 
     @GetMapping
     public Mono<String> nonBlockingEndpoint() {
+        log.info("asyncBlockTest start Thread : {}", Thread.currentThread().getName());
         return asyncNonBlockService.nonBlockingMethod()
                 .thenReturn("Non-blocking operation completed!");
     }

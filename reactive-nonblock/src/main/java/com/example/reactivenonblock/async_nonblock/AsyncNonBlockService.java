@@ -10,8 +10,7 @@ import reactor.core.scheduler.Schedulers;
 public class AsyncNonBlockService {
 
     public Mono<Void> nonBlockingMethod() {
-        log.info("syncBlockTest start Thread : {}", Thread.currentThread().getName());
-        return Mono.delay(java.time.Duration.ofSeconds(10)) // 5초 딜레이
+        return Mono.delay(java.time.Duration.ofSeconds(10)) // 10초 딜레이
                 .doOnNext(i -> log.info("Non-blocking method: Delayed for 5 seconds"))
                 .then()
                 .subscribeOn(Schedulers.boundedElastic()); // 백그라운드 스레드에서 실행

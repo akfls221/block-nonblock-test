@@ -1,0 +1,24 @@
+package com.example.nonblock;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+
+@Slf4j
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/async/non_block")
+public class AsyncNonBlockController {
+
+    private final AsyncNonBlockService asyncNonBlockService;
+
+    @GetMapping
+    public Mono<String> nonBlockingEndpoint() {
+        log.info("asyncBlockTest start Thread : {}", Thread.currentThread().getName());
+        return asyncNonBlockService.nonBlockingMethod()
+                .thenReturn("Non-blocking operation completed!");
+    }
+}
